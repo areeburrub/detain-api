@@ -1,0 +1,74 @@
+{
+  "response": [{
+    "serial_number": "1",
+    "name": "Engg Chemistry",
+    "subject_code": "KAS202T-PP",
+    "code": "KAS202T",
+    "classes": "15/21",
+    "percentage": "71.43"
+  }, {
+    "serial_number": "2",
+    "name": "Engg Maths-II",
+    "subject_code": "KAS203T-PP",
+    "code": "KAS203T",
+    "classes": "13/22",
+    "percentage": "59.09"
+  }, {
+    "serial_number": "3",
+    "name": "Emerging Domains in Electronics Engg",
+    "subject_code": "KEC201T-PP",
+    "code": "KEC201T",
+    "classes": "10/18",
+    "percentage": "55.56"
+  }, {
+    "serial_number": "4",
+    "name": "Fundamentals of ME and Mechatronics",
+    "subject_code": "KME201T-PP",
+    "code": "KME201T",
+    "classes": "10/20",
+    "percentage": "50"
+  }, {
+    "serial_number": "5",
+    "name": "Soft Skill-II (Compulsory Audit Course)",
+    "subject_code": "KNC201-PP",
+    "code": "KNC201",
+    "classes": "6/8",
+    "percentage": "75"
+  }, {
+    "serial_number": "6",
+    "name": "Engg Chemistry Lab",
+    "subject_code": "KAS252P-PR",
+    "code": "KAS252P",
+    "classes": "2/6",
+    "percentage": "33.33"
+  }, {
+    "serial_number": "7",
+    "name": "Basic Electronics Engg Lab",
+    "subject_code": "KEC251P-PR",
+    "code": "KEC251P",
+    "classes": "4/6",
+    "percentage": "66.67"
+  }, {
+    "serial_number": "8",
+    "name": "English Language Lab",
+    "subject_code": "KAS254P-PR",
+    "code": "KAS254P",
+    "classes": "10/15",
+    "percentage": "66.67"
+  }, {
+    "serial_number": "9",
+    "name": "Mechanical Workshop Lab",
+    "subject_code": "KWS251P-PR",
+    "code": "KWS251P",
+    "classes": "9/12",
+    "percentage": "75"
+  }, {
+    "total_classes": "79/128",
+    "percentage": "61.72%"
+  }, {
+    "metadata": {
+      "name": ["AREEB UR RUB"],
+      "dp": "https://cnvcontents.s3.ap-south-1.amazonaws.com/student_profile/021GCETGCEBAIN281538/student-profile-documents/edit_id_card_2/1857/2021-11-26/1637878179__91_95465_57824_20211126_153911_jpg.jpg"
+    }
+  }]
+}
