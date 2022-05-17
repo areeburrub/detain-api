@@ -6,19 +6,20 @@ const app = express()
 
 app.get('/attendance', async (req, res) => {
 
-    const allowedOrigins = [
-      "http://127.0.0.1:3000",
-      "http://localhost:3000",
-      "http://127.0.0.1:5000",
-      "http://localhost:5000",
-      "http://detain-or-not.vercel.app",
-      "https://detain-or-not.vercel.app/"
-    ];
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-      res.setHeader("Access-Control-Allow-Origin", origin);
-    }
+    // const allowedOrigins = [
+    //   "http://127.0.0.1:3000",
+    //   "http://localhost:3000",
+    //   "http://127.0.0.1:5000",
+    //   "http://localhost:5000",
+    //   "http://detain-or-not.vercel.app",
+    //   "https://detain-or-not.vercel.app"
+    // ];
+    // const origin = req.headers.origin;
+    // if (allowedOrigins.includes(origin)) {
+    //   res.setHeader("Access-Control-Allow-Origin", origin);
+    // }
     //res.header('Access-Control-Allow-Origin', 'http://127.0.0.1:8020');
+    res.header('Access-Control-Allow-Origin', '*');
     res.header("Access-Control-Allow-Methods", "GET, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
     res.header("Access-Control-Allow-Credentials", true);
