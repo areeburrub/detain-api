@@ -11,7 +11,10 @@ app.get('/attendance', async (req, res) => {
     if (!ad_number) {
       res.status(400).send({ error: "Admission number is not found!" });
     } else {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+      });
       const page = await browser.newPage();
 
       await page.goto("https://gu.icloudems.com");
