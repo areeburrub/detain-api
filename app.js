@@ -46,7 +46,7 @@ app.get('/attendance', async (req, res) => {
                     await page.waitForTimeout(2000);
                     
                     //await page.click("#select2-acadyear-container")
-                    //await (await page.$('.select2-selection__rendered')).press('Enter'); // Enter Key (return key
+                    //await (await page.$('.select2-selection__rendered')).press('Enter'); // Enter Key (return key)
                     //await (await page.$('#select2-acadyear-result-npqk-2021-2022')).press('Enter'); // Enter Key
                     
                     await page.select("#acadyear", "2021-2022");
