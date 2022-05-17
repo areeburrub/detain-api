@@ -11,7 +11,8 @@ app.get('/attendance', async (req, res) => {
       "http://localhost:3000",
       "http://127.0.0.1:5000",
       "http://localhost:5000",
-      "http://detain-or-not.vercel.app"
+      "http://detain-or-not.vercel.app",
+      "https://detain-or-not.vercel.app/"
     ];
     const origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
