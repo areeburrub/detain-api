@@ -59,31 +59,69 @@ app.get('/attendance', async (req, res) => {
             )
             res.status(400).send("Invalid Login Credentials");
             else {
-                await page.goto(
-                    "https://gu.icloudems.com/corecampus/student/attendance/subwise_attendace_new.php"
-                    );
-                    //
+                //loder style display to none
+                let attr = await page.$$eval("div.preloader-backdrop", el => el.map(x => x.getAttribute("style")));
+                while (attr[0] == null) {
+                  attr = await page.$$eval("div.preloader-backdrop", el => el.map(x => x.getAttribute("style")));
+                }
+                // await page.goto(
+                //     "https://gu.icloudems.com/corecampus/student/attendance/subwise_attendace_new.php"
+                //     //
+                //     );
+                //     console.log("in attendance");
+                
+                //await page.click("#select2-acadyear-container")
+                //await (await page.$('.select2-selection__rendered')).press('Enter'); // Enter Key (return key)
+                //await (await page.$('#select2-acadyear-result-npqk-2021-2022')).press('Enter'); // Enter Key
+                    console.log("in home");
+                    await page.waitForTimeout(500);
+                    let att = await page.$x('/html/body/div[1]/div/div/div[4]/div/div/div[4]/a')
+                    await page.waitForTimeout(500);
+                    await att[0].press("Enter"); 
+                    await page.waitForTimeout(500);
+                    const optionsBtn = await page.$x("/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div/button");
+                    await page.waitForTimeout(500);
+                    await optionsBtn[0].press("Enter");
+                    
+                    
+                    //loder style display to none
                     console.log("in attendance");
-                    await page.waitForTimeout(2000);
+                    let attr1 = await page.$$eval("div.preloader-backdrop", el => el.map(x => x.getAttribute("style")));
+                    console.log(attr1);
+                    while (attr1[0] == null) {
+                      attr1 = await page.$$eval("div.preloader-backdrop", el => el.map(x => x.getAttribute("style")));
+                      console.log("waiting...");
+                    }
                     
-                    //await page.click("#select2-acadyear-container")
-                    //await (await page.$('.select2-selection__rendered')).press('Enter'); // Enter Key (return key)
-                    //await (await page.$('#select2-acadyear-result-npqk-2021-2022')).press('Enter'); // Enter Key
+                    console.log("in attendance no loader");
                     
-                    await page.select("#acadyear", "2021-2022");
+                    attr = await page.$$eval("div.preloader-backdrop", el => el.map(x => x.getAttribute("style")));
+                    console.log(attr.length);
+                    
                     await page.waitForTimeout(1000);
+
+                    let options = await page.$x("/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div/div/a[2]");
+                    while (options.length == 0) {
+                      options = await page.$x("/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div/div/a[2]");
+                    }
+                    
+                    await options[0].click();
+                    await page.waitForTimeout(1000);
+
+                    await page.select("#acadyear", "2021-2022");
+                    await page.waitForTimeout(500);
                     //get all values of a select menu
                     const values = await page.evaluate(() => {
                        const select = document.querySelector('#classid');
                        return Array.from(select.options).map(o => o.value);
                     });
-                    await page.waitForTimeout(1000);
-                    await page.select("#classid", await values[values.length-1]);
-                    await page.waitForTimeout(1000);
+                    await page.waitForTimeout(500);
+                    await page.select("#classid", await values[values.length-2]);
+                    await page.waitForTimeout(500);
                     await (await page.$("#getattendance")).press("Enter"); // Enter Key
                     console.log("fetched attendace");
                     
-                    await page.waitForTimeout(2000);
+                    await page.waitForTimeout(1000);
                     console.log("fetching table");
 
         const result = await page.$$eval(".table tr", (rows) => {
