@@ -30,7 +30,7 @@ app.get('/attendance', async (req, res) => {
       res.status(400).send({ error: "Admission number is not found!" });
     } else {
       const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
       });
       const page = await browser.newPage();
@@ -108,7 +108,7 @@ app.get('/attendance', async (req, res) => {
                     await options[0].click();
                     await page.waitForTimeout(1000);
 
-                    await page.select("#acadyear", "2021-2022");
+                    await page.select("#acadyear", "2022-2023");
                     await page.waitForTimeout(500);
                     //get all values of a select menu
                     const values = await page.evaluate(() => {
@@ -116,7 +116,7 @@ app.get('/attendance', async (req, res) => {
                        return Array.from(select.options).map(o => o.value);
                     });
                     await page.waitForTimeout(500);
-                    await page.select("#classid", await values[values.length-2]);
+                    await page.select("#classid", await values[values.length-1]);
                     await page.waitForTimeout(500);
                     await (await page.$("#getattendance")).press("Enter"); // Enter Key
                     console.log("fetched attendace");
