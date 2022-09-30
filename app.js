@@ -30,7 +30,7 @@ app.get('/attendance', async (req, res) => {
       res.status(400).send({ error: "Admission number is not found!" });
     } else {
       const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
       });
       const page = await browser.newPage();
@@ -47,7 +47,7 @@ app.get('/attendance', async (req, res) => {
       await page.waitForTimeout(1000);
 
       await (await page.$("#psslogin")).press("Enter"); // Enter Key
-    console.log("Logged in");   
+    console.log("Logged in");
     await page.waitForTimeout(2000);
     
     if (
@@ -66,7 +66,6 @@ app.get('/attendance', async (req, res) => {
                 }
                 // await page.goto(
                 //     "https://gu.icloudems.com/corecampus/student/attendance/subwise_attendace_new.php"
-                //     //
                 //     );
                 //     console.log("in attendance");
                 
@@ -77,7 +76,7 @@ app.get('/attendance', async (req, res) => {
                     await page.waitForTimeout(500);
                     let att = await page.$x('/html/body/div[1]/div/div/div[4]/div/div/div[4]/a')
                     await page.waitForTimeout(500);
-                    await att[0].press("Enter"); 
+                    await att[0].press("Enter");
                     await page.waitForTimeout(500);
                     const optionsBtn = await page.$x("/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div/button");
                     await page.waitForTimeout(500);
