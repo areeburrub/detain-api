@@ -26,11 +26,12 @@ app.get('/attendance', async (req, res) => {
 
     const ad_number = req.query.adno
     const pswd = req.query.pswd || "GCET123"
+    console.log(ad_number, pswd);
     if (!ad_number) {
       res.status(400).send({ error: "Admission number is not found!" });
     } else {
       const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
       });
       const page = await browser.newPage();
@@ -78,13 +79,14 @@ app.get('/attendance', async (req, res) => {
                     await page.waitForTimeout(500);
                     await att[0].press("Enter");
                     await page.waitForTimeout(500);
-                    const optionsBtn = await page.$x("/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div/button");
-                    await page.waitForTimeout(500);
-                    await optionsBtn[0].press("Enter");
+                    //const optionsBtn = await page.$x("/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div/button");
+                    //await page.waitForTimeout(3500);
+                    //await optionsBtn[0].press("Enter");
                     
                     
                     //loder style display to none
                     console.log("in attendance");
+                    await page.waitForTimeout(500);
                     let attr1 = await page.$$eval("div.preloader-backdrop", el => el.map(x => x.getAttribute("style")));
                     console.log(attr1);
                     while (attr1[0] == null) {
@@ -94,12 +96,17 @@ app.get('/attendance', async (req, res) => {
                     
                     console.log("in attendance no loader");
                     
-                    attr = await page.$$eval("div.preloader-backdrop", el => el.map(x => x.getAttribute("style")));
-                    console.log(attr.length);
+                    // attr = await page.$$eval("div.preloader-backdrop", el => el.map(x => x.getAttribute("style")));
+                    // console.log(attr.length);
                     
                     await page.waitForTimeout(1000);
+                                  
+                    let options = await page.$x("/html/body/div[1]/div/div[1]/div[3]/div[2]/div[2]/form/div/div[1]/div/span");
 
-                    let options = await page.$x("/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div/div/a[2]");
+                    await page.waitForTimeout(1000);
+                    await options[0].click();
+                    console.log(options);
+                    await page.waitForTimeout(1000);
                     while (options.length == 0) {
                       options = await page.$x("/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div/div/a[2]");
                     }
