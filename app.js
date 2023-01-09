@@ -31,7 +31,7 @@ app.get('/attendance', async (req, res) => {
       res.status(400).send({ error: "Admission number is not found!" });
     } else {
       const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
       });
       const page = await browser.newPage();
@@ -105,7 +105,6 @@ app.get('/attendance', async (req, res) => {
 
                     await page.waitForTimeout(1000);
                     await options[0].click();
-                    console.log(options);
                     await page.waitForTimeout(1000);
                     while (options.length == 0) {
                       options = await page.$x("/html/body/div[1]/div[1]/div/div[3]/div[2]/div[1]/div/div/div/a[2]");
