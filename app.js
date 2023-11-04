@@ -1,7 +1,7 @@
 const puppeteer = require('puppeteer');
 const express = require('express')
 //const {PuppeteerScreenRecorder} = require('puppeteer-screen-recorder');
-const port = process.env.PORT || 9696
+const port = process.env.PORT || 9000
 const app = express()
 
 app.get('/attendance', async (req, res) => {
@@ -42,7 +42,7 @@ app.get('/attendance', async (req, res) => {
       await page.focus("#useriid");
       await page.keyboard.type(ad_number);
 
-      
+
       await page.waitForSelector("#actlpass");
       await page.focus("#actlpass");
       await page.keyboard.type(pswd);
